@@ -1,117 +1,585 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta charset="utf-8">
-    <meta name="generator" content="CoffeeCup HTML Editor (www.coffeecup.com)">
-    <meta name="dcterms.created" content="Mon, 22 Sep 2025 15:29:47 GMT">
-    <meta name="description" content="">
-    <script src="https://cdn.tailwindcss.com"></script>
-	<link rel="stylesheet" href="tailwind.css">
-    <title>Portfolio Website</title>
-  </head>
-  <body class="sm:text-sm text-md md:text-lg font-normal text-slate-600">
-  <div class="container mx-auto p-10 md:p-5">
-  <header>
-  	  <section class="md:h-screen grid md:grid-cols-2 gap-6 md:gap-12 px-4 sm:px-6 lg:px-8 items-center">
-	     <div class="">
-		 <img class="w-28 mb-4" src="logo.png" alt="Logo" />
-		 <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-800 mb-4 tracking-tight">Building Modern Websites that stand out</h1>
-		<h2 class="mt-2 text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-pretty text-slate-800 lg:text-balance mb-4">Hi I am Hamad Khan- Web Developer</h2>
-		 <p class="mb-8">I craft clean, responsive, and user-friendly websites powered by HTML, CSS, Bootstrap, and Tailwind CSS.
-		             From informative AI projects to sleek business pages, I bring ideas to life with modern design and solid code.</p>
-		 <ul class="flex gap-6 sm:gap-4">
-		 <li><a class="bg-sky-500 hover:bg-sky-700 text-white px-4 py-2 md:px-8 md:py-4 rounded-lg inline-block"
-		                                  href="https://mhk61366-svg.github.io/AI-The-website/">View my work</a></li>
-		 <li><a class="bg-slate-400 hover:bg-slate-500 text-white px-4 py-2 md:px-8 md:py-4 rounded-lg inline-block" href="#contact">Contact</a></li>
-		 </ul>
-		 </div>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="description" content="Hamad Khan — AI Student & Web Developer based in Islamabad">
+  <title>Hamad Khan — Developer</title>
 
-	     <img class="w-full max-w-md h-auto object-contain" src="option 2.avif" alt="code" />
-		 </div>
-	  </section>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Space Grotesk', 'sans-serif'],
+            body: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            navy:  { DEFAULT: '#0F172A', 800: '#1E293B', 700: '#334155' },
+            cyan:  { DEFAULT: '#06B6D4', dim: '#0891B2' },
+            slate: { soft: '#94A3B8', muted: '#64748B' },
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Your custom styles here */
+    /* ── Base ── */
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      background-color: #0F172A;
+      color: #CBD5E1;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── Noise texture overlay ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Glow blob in hero ── */
+    .hero-glow {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(6,182,212,0.12) 0%, transparent 70%);
+      top: -100px;
+      right: -150px;
+      pointer-events: none;
+      animation: pulse-glow 6s ease-in-out infinite;
+    }
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50%       { opacity: 1;   transform: scale(1.08); }
+    }
+
+    /* ── Cursor blink ── */
+    .cursor::after {
+      content: '|';
+      color: #06B6D4;
+      animation: blink 0.75s step-start infinite;
+      margin-left: 2px;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* ── Nav pill ── */
+    .nav-pill {
+      background: rgba(30, 41, 59, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(6,182,212,0.15);
+    }
+
+    /* ── Card glass ── */
+    .card-glass {
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid rgba(148,163,184,0.1);
+      backdrop-filter: blur(8px);
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+    .card-glass:hover {
+      border-color: rgba(6,182,212,0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(6,182,212,0.12);
+    }
+
+    /* ── Skill tag ── */
+    .skill-tag {
+      background: rgba(6,182,212,0.08);
+      border: 1px solid rgba(6,182,212,0.2);
+      color: #06B6D4;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      display: inline-block;
+      transition: background 0.2s;
+    }
+    .skill-tag:hover { background: rgba(6,182,212,0.18); }
+
+    /* ── CTA gradient button ── */
+    .btn-primary {
+      background: linear-gradient(135deg, #06B6D4, #0891B2);
+      color: #0F172A;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      padding: 12px 28px;
+      border-radius: 8px;
+      display: inline-block;
+      transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 0 0 0 rgba(6,182,212,0);
+    }
+    .btn-primary:hover {
+      opacity: 0.92;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(6,182,212,0.35);
+    }
+
+    .btn-ghost {
+      color: #94A3B8;
+      border: 1px solid rgba(148,163,184,0.25);
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 500;
+      padding: 12px 28px;
+      border-radius: 8px;
+      display: inline-block;
+      transition: color 0.2s, border-color 0.2s, transform 0.2s;
+    }
+    .btn-ghost:hover {
+      color: #06B6D4;
+      border-color: #06B6D4;
+      transform: translateY(-2px);
+    }
+
+    /* ── Section fade-in ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── Divider line ── */
+    .divider {
+      border: none;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(148,163,184,0.15), transparent);
+      margin: 0 auto;
+    }
+
+    /* ── Counter number ── */
+    .stat-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      color: #06B6D4;
+      line-height: 1;
+    }
+
+    /* ── Mobile nav toggle ── */
+    #mobile-menu { transition: max-height 0.3s ease, opacity 0.3s ease; overflow: hidden; max-height: 0; opacity: 0; }
+    #mobile-menu.open { max-height: 300px; opacity: 1; }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0F172A; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #06B6D4; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .hero-glow, .cursor::after { animation: none; transition: none; opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+
+<body class="relative z-10">
+
+  <!-- ══════════════════ NAV ══════════════════ -->
+  <nav class="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-3xl">
+    <div class="nav-pill rounded-xl px-5 py-3 flex items-center justify-between">
+      <a href="#" class="tracking-tight">
+        <img src="Logo.png" alt="Logo" class="w-36 h-24 inline-block mr-1">
+      </a>
+      <!-- Desktop links -->
+      <ul class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-soft">
+        <li><a href="#about"   class="hover:text-white transition-colors">About</a></li>
+        <li><a href="#skills"  class="hover:text-white transition-colors">Skills</a></li>
+        <li><a href="#project" class="hover:text-white transition-colors">Project</a></li>
+        <li><a href="#contact" class="hover:text-white transition-colors">Contact</a></li>
+      </ul>
+      <a href="#contact" class="hidden md:inline-block btn-primary text-sm py-2 px-5">Hire me</a>
+      <!-- Hamburger -->
+      <button id="hamburger" class="md:hidden text-slate-soft focus:outline-none" aria-label="Toggle menu">
+        <svg id="icon-open"  class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="nav-pill rounded-xl mt-2 px-5 py-0">
+      <ul class="flex flex-col gap-4 py-4 text-sm font-medium text-slate-soft">
+        <li><a href="#about"   class="hover:text-white transition-colors" onclick="closeMobileMenu()">About</a></li>
+        <li><a href="#skills"  class="hover:text-white transition-colors" onclick="closeMobileMenu()">Skills</a></li>
+        <li><a href="#project" class="hover:text-white transition-colors" onclick="closeMobileMenu()">Project</a></li>
+        <li><a href="#contact" class="hover:text-white transition-colors" onclick="closeMobileMenu()">Contact</a></li>
+        <li><a href="#contact" class="btn-primary text-center text-sm py-2" onclick="closeMobileMenu()">Hire me</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ══════════════════ HERO ══════════════════ -->
+  <header id="about" class="relative min-h-screen flex items-center pt-24 pb-16 px-6 overflow-hidden">
+    <div class="hero-glow"></div>
+
+    <div class="relative z-10 max-w-5xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <!-- Eyebrow -->
+        <div class="flex items-center gap-2 mb-6">
+          <span class="w-8 h-px bg-cyan-DEFAULT"></span>
+          <span class="font-mono text-xs text-cyan-DEFAULT tracking-widest uppercase">Available for internships</span>
+        </div>
+
+        <h1 class="font-display font-bold text-white leading-[1.05] mb-4" style="font-size: clamp(2.4rem, 5vw, 3.6rem);">
+          Hi, I'm <span class="text-cyan-DEFAULT">Hamad Khan</span>
+        </h1>
+
+        <!-- Typewriter line -->
+        <p class="font-mono text-slate-soft text-lg mb-6">
+          &gt; I build <span id="typewriter" class="text-white font-medium cursor"></span>
+        </p>
+
+        <p class="text-slate-soft leading-relaxed mb-8 max-w-md">
+          BS Artificial Intelligence student at Bahria University, Islamabad. I craft clean, responsive websites and am actively building toward AI & backend engineering. Solid in Python, HTML/CSS, Tailwind, and classical AI concepts.
+        </p>
+
+        <div class="flex flex-wrap gap-4">
+          <a href="https://mhk61366-svg.github.io/AI-The-website/" target="_blank" class="btn-primary">View my work</a>
+          <a href="#contact" class="btn-ghost">Get in touch</a>
+        </div>
+      </div>
+
+      <!-- Code card -->
+      <div class="hidden md:block">
+        <div class="card-glass rounded-2xl p-6 font-mono text-sm leading-relaxed">
+       <img src="Hero-img.jpeg" alt="Hero Image" class="rounded-xl">
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce opacity-40">
+      <span class="font-mono text-xs text-slate-soft">scroll</span>
+      <svg class="w-4 h-4 text-slate-soft" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
   </header>
 
-  <section class="mt-8 sm:mt-32 md:mt-32" >
-  		   <div class="bg-white py-24 sm:py-32">
-  <div class="mx-auto max-w-7xl sm:px-4 px-6 lg:px-8">
-    <div class="mx-auto max-w-2xl lg:text-center">
-      <h2 class="mt-2 text-3xl font-bold tracking-tight text-pretty text-slate-800 sm:text-2xl lg:text-balance">Skills & Services</h2>
-      <p class="mt-6 text-lg/8 text-gray-700">From sleek frontends to professional business sites, I combine creativity with code
-									              to build websites that leave a lasting impression.</p>
+  <hr class="divider max-w-4xl" />
+
+  <!-- ══════════════════ STATS ══════════════════ -->
+  <section class="py-16 px-6 reveal">
+    <div class="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+      <div>
+        <div class="stat-num" data-target="4">0</div>
+        <p class="text-slate-soft text-sm mt-1 font-mono">Projects built</p>
+      </div>
+      <div>
+        <div class="stat-num" data-target="4">0</div>
+        <p class="text-slate-soft text-sm mt-1 font-mono">Semesters done</p>
+      </div>
+      <div>
+        <div class="stat-num">3.17</div>
+        <p class="text-slate-soft text-sm mt-1 font-mono">CGPA</p>
+      </div>
+      <div>
+        <div class="stat-num" data-target="2028">0</div>
+        <p class="text-slate-soft text-sm mt-1 font-mono">Grad year</p>
+      </div>
     </div>
-    <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
-      <dl class="grid max-w-xl grid-cols-1 sm:gap-x-4 sm:gap-y-5 gap-x-8 md:gap-x-6 md:gap-y-7 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
-        <div class="relative pl-16">
-          <dt class="font-bold">
-            <div class="absolute top-0 left-0 flex size-10 items-center justify-center rounded-lg bg-sky-400">
-              <img src="laptop-svgrepo-com.svg" alt="icon" class="w-6 h-6" />
-            </div>
-            Responsive Web Design
-          </dt>
-          <dd class="mt-2">Design websites that look great on desktops, tablets, and mobile devices.</dd>
+  </section>
+
+  <hr class="divider max-w-4xl" />
+
+  <!-- ══════════════════ SKILLS ══════════════════ -->
+  <section id="skills" class="py-24 px-6">
+    <div class="max-w-5xl mx-auto">
+
+      <div class="reveal mb-16">
+        <span class="font-mono text-xs text-cyan-DEFAULT tracking-widest uppercase">What I work with</span>
+        <h2 class="font-display font-bold text-white text-3xl md:text-4xl mt-2">Skills & Services</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+
+        <!-- Card 1 -->
+        <div class="card-glass rounded-2xl p-8 reveal">
+          <div class="w-10 h-10 rounded-lg bg-cyan-DEFAULT/10 border border-cyan-DEFAULT/20 flex items-center justify-center mb-5">
+            <svg class="w-5 h-5 text-cyan-DEFAULT" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </div>
+          <h3 class="font-display font-semibold text-white text-lg mb-2">Responsive Web Design</h3>
+          <p class="text-slate-soft text-sm leading-relaxed mb-4">Pixel-perfect layouts that hold up from a 320px phone to a 4K monitor. Mobile-first, always.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag">HTML5</span>
+            <span class="skill-tag">CSS3</span>
+            <span class="skill-tag">Tailwind</span>
+          </div>
         </div>
-        <div class="relative pl-16">
-          <dt class="font-bold">
-            <div class="absolute top-0 left-0 flex size-10 items-center justify-center rounded-lg bg-sky-400">
-              <img src="genetic-data-svgrepo-com.svg" alt="icon" class="w-6 h-6" />
-            </div>
-            Frontend Development
-          </dt>
-          <dd class="mt-2">Using HTML, CSS, Bootstrap, and Tailwind, I build clean and functional frontends.</dd>
+
+        <!-- Card 2 -->
+        <div class="card-glass rounded-2xl p-8 reveal">
+          <div class="w-10 h-10 rounded-lg bg-cyan-DEFAULT/10 border border-cyan-DEFAULT/20 flex items-center justify-center mb-5">
+            <svg class="w-5 h-5 text-cyan-DEFAULT" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+          </div>
+          <h3 class="font-display font-semibold text-white text-lg mb-2">Frontend Development</h3>
+          <p class="text-slate-soft text-sm leading-relaxed mb-4">Clean, functional frontends built with semantic HTML and modern CSS frameworks. No unnecessary bloat.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag">Tailwind</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">Git</span>
+          </div>
         </div>
-        <div class="relative pl-16">
-          <dt class="font-bold">
-            <div class="absolute top-0 left-0 flex size-10 items-center justify-center rounded-lg bg-sky-400">
-              <img src="accelerate-svgrepo-com.svg" alt="icon" class="w-6 h-6" />
-            </div>
-            Professional Websites
-          </dt>
-          <dd class="mt-2">I create simple, professional websites tailored to showcase your work or business.</dd>
+
+        <!-- Card 3 -->
+        <div class="card-glass rounded-2xl p-8 reveal">
+          <div class="w-10 h-10 rounded-lg bg-cyan-DEFAULT/10 border border-cyan-DEFAULT/20 flex items-center justify-center mb-5">
+            <svg class="w-5 h-5 text-cyan-DEFAULT" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+          </div>
+          <h3 class="font-display font-semibold text-white text-lg mb-2">AI & Python</h3>
+          <p class="text-slate-soft text-sm leading-relaxed mb-4">Classical AI (search algorithms, agents, IR), data analysis with Pandas/NumPy, and actively building toward LLM integrations.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Pandas</span>
+            <span class="skill-tag">NumPy</span>
+            <span class="skill-tag">IR Agents</span>
+          </div>
         </div>
-        <div class="relative pl-16">
-          <dt class="font-bold">
-            <div class="absolute top-0 left-0 flex size-10 items-center justify-center rounded-lg bg-sky-400">
-              <img src="help-web-button-svgrepo-com.svg" alt="icon" class="w-6 h-6" />
-            </div>
-            My project
-          </dt>
-          <dd class="mt-2">A Informative website on Artificial Intelligence.  <a class="text-sky-500 font-bold" href="https://mhk61366-svg.github.io/AI-The-website/">Link</a></dd>
+
+        <!-- Card 4 -->
+        <div class="card-glass rounded-2xl p-8 reveal">
+          <div class="w-10 h-10 rounded-lg bg-cyan-DEFAULT/10 border border-cyan-DEFAULT/20 flex items-center justify-center mb-5">
+            <svg class="w-5 h-5 text-cyan-DEFAULT" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+          </div>
+          <h3 class="font-display font-semibold text-white text-lg mb-2">Problem Solving</h3>
+          <p class="text-slate-soft text-sm leading-relaxed mb-4">Built a Triage Customer Support Agent using inverted indexing and IR — shipped for a real HackerRank challenge.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag">IR</span>
+            <span class="skill-tag">AI Agents</span>
+            <span class="skill-tag">Python</span>
+          </div>
         </div>
-      </dl>
+
+      </div>
     </div>
-  </div>
-</div>
-
-  </section>
-  <section class="flex flex-col items-center text-center lg:flex-row lg:justify-evenly gap-4 sm:gap-8 md:gap-12 mb-32 md:mb-52 md:px-12 px-6 sm:px-8 md:px-10">
-    <div>
-	<h2 class="mt-2 mb-8 text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-pretty text-slate-800 lg:text-balance">Code, Create, Conquer — My Digital Journey in a Single Click"</h2>
-	<p>Welcome to my AI-website project — where design meets code and ideas come alive. I built this site to showcase how
-	artificial intelligence can transform web experiences. From sleek layouts to interactive elements, every line of code mirrors my
-	 passion for clean, intuitive design. Explore my work, see what inspires me, and imagine what we could build together.</p>
-	 <a class="text-sky-500 font-bold" href="https://mhk61366-svg.github.io/AI-The-website/">Link to this Website</a>
-	</div>
-    <img class="h-auto max-w-3xs md:max-w-lg" src="AI-img.JPG" alt="my website" />
   </section>
 
-  <section class="flex justify-center mb-24 md:mb-64">
-  <div class="bg-sky-500 max-w-3xl rounded-lg p-4 md:p-12 text-white text-center">
-  <h2 class="mt-2 text-4xl font-bold tracking-tight text-pretty mb-4">Have an Idea? Let’s Build It!</h2>
-  <a class="bg-white hover:bg-sky-700 text-sky-500 px-8 py-4 rounded-lg inline-block" href="https://www.linkedin.com/in/hamad-khan06">Get Started</a>
-  </div>
+  <hr class="divider max-w-4xl" />
+
+  <!-- ══════════════════ PROJECT ══════════════════ -->
+  <section id="project" class="py-24 px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="reveal mb-16">
+        <span class="font-mono text-xs text-cyan-DEFAULT tracking-widest uppercase">What I've shipped</span>
+        <h2 class="font-display font-bold text-white text-3xl md:text-4xl mt-2">Featured Project</h2>
+      </div>
+
+      <!-- Featured project card -->
+      <div class="card-glass rounded-2xl p-8 md:p-12 reveal grid md:grid-cols-5 gap-8 items-center">
+        <div class="md:col-span-3">
+          <span class="skill-tag mb-4 inline-block">HTML · CSS · Tailwind · JS</span>
+          <h3 class="font-display font-bold text-white text-2xl md:text-3xl mt-3 mb-4 leading-tight">
+            AI — The Website
+          </h3>
+          <p class="text-slate-soft leading-relaxed mb-6">
+            An informative, responsive website on Artificial Intelligence — covering history, applications, and impact. Built to practice modern layout techniques and clean visual design from scratch.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="https://mhk61366-svg.github.io/AI-The-website/" target="_blank" class="btn-primary text-sm py-2 px-5 flex items-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Live Demo
+            </a>
+            <a href="https://github.com/mhk61366-svg" target="_blank" class="btn-ghost text-sm py-2 px-5 flex items-center gap-2">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+        <!-- Browser mockup -->
+        <div class="md:col-span-2">
+          <div class="rounded-xl overflow-hidden border border-white/10" style="background:#1E293B;">
+            <div class="flex items-center gap-2 px-4 py-3 border-b border-white/10">
+              <span class="w-2.5 h-2.5 rounded-full bg-red-400/70"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-yellow-400/70"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-green-400/70"></span>
+              <span class="ml-2 text-xs font-mono text-slate-muted truncate">mhk61366-svg.github.io/AI-The-website/</span>
+            </div>
+            <div class="p-4 space-y-2">
+              <div class="h-3 rounded bg-cyan-DEFAULT/20 w-3/4"></div>
+              <div class="h-3 rounded bg-white/10 w-full"></div>
+              <div class="h-3 rounded bg-white/10 w-5/6"></div>
+              <div class="h-3 rounded bg-white/10 w-2/3"></div>
+              <div class="mt-4 h-20 rounded-lg bg-cyan-DEFAULT/10 border border-cyan-DEFAULT/20 flex items-center justify-center">
+                <span class="font-mono text-xs text-cyan-DEFAULT">AI — The Website</span>
+              </div>
+              <div class="h-3 rounded bg-white/10 w-full"></div>
+              <div class="h-3 rounded bg-white/10 w-4/5"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Other projects mini grid -->
+      <div class="mt-6 grid sm:grid-cols-3 gap-4 reveal">
+        <div class="card-glass rounded-xl p-6">
+          <h4 class="font-display font-semibold text-white text-sm mb-2">Triage Support Agent</h4>
+          <p class="text-slate-soft text-xs leading-relaxed mb-3">Python · Inverted index · IR — automated customer query routing for HackerRank.</p>
+          <span class="skill-tag">Python</span>
+        </div>
+        <div class="card-glass rounded-xl p-6">
+          <h4 class="font-display font-semibold text-white text-sm mb-2">Connect-4 Minimax AI</h4>
+          <p class="text-slate-soft text-xs leading-relaxed mb-3">Tkinter GUI with full Minimax adversarial search — built for university AI subject.</p>
+          <span class="skill-tag">Python</span>
+        </div>
+        <div class="card-glass rounded-xl p-6">
+          <h4 class="font-display font-semibold text-white text-sm mb-2">Weather Analysis App</h4>
+          <p class="text-slate-soft text-xs leading-relaxed mb-3">Data analysis + visualization with Pandas, NumPy, and Matplotlib via Tkinter.</p>
+          <span class="skill-tag">Pandas</span>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <footer id="contact" class="mb-4 md:mb-8 px-4 sm:px-6 md:px-8">
-  <h3 class="text-2xl md:text-3xl font-bold tracking-tight text-pretty mb-4 md:mb-6 text-center">Contact Details</h3>
-<ul class="flex justify-center gap-3 md:gap-4">
-<li><a href="https://wa.me/923485941107" target="_blank" ><img class="w-[25px] sm:w-[35px] md:w-[50px]" src="whatsapp.png" alt="icon"></a></li>
-<li><a href="https://instagram.com/hamadkhan.06" target="_blank"><img class="w-[25px] sm:w-[35px] md:w-[50px]" src="Insta.png" alt="icon"></a></li>
-<li><a href="https://www.linkedin.com/in/hamad-khan06" target="_blank"><img class="w-[25px] sm:w-[35px] md:w-[50px]" src="In.png" alt="icon"></li>
-</ul>
+  <hr class="divider max-w-4xl" />
+
+  <!-- ══════════════════ CTA BAND ══════════════════ -->
+  <section class="py-24 px-6 reveal">
+    <div class="max-w-3xl mx-auto text-center">
+      <span class="font-mono text-xs text-cyan-DEFAULT tracking-widest uppercase">Open to opportunities</span>
+      <h2 class="font-display font-bold text-white text-3xl md:text-5xl mt-3 mb-5 leading-tight">
+        Have an idea?<br/>Let's build it.
+      </h2>
+      <p class="text-slate-soft mb-8 max-w-md mx-auto">I'm actively looking for internships in AI and backend engineering. If your work is interesting, reach out.</p>
+      <a href="https://www.linkedin.com/in/hamad-khan06" target="_blank" class="btn-primary text-base">
+        Let's talk on LinkedIn →
+      </a>
+    </div>
+  </section>
+
+  <!-- ══════════════════ FOOTER / CONTACT ══════════════════ -->
+  <footer id="contact" class="pb-12 px-6">
+    <hr class="divider max-w-4xl mb-12" />
+    <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+      <div>
+         <img src="Logo.png" alt="Logo" class="w-36 h-24 inline-block mr-1">
+        <p class="text-slate-soft text-sm mt-1">Hamad Khan — Islamabad, Pakistan</p>
+      </div>
+      <ul class="flex items-center gap-6">
+        <li>
+          <a href="https://wa.me/923485941107" target="_blank" aria-label="WhatsApp"
+             class="text-slate-soft hover:text-green-400 transition-colors flex items-center gap-2 text-sm font-mono">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            WhatsApp
+          </a>
+        </li>
+        <li>
+          <a href="https://instagram.com/hamadkhan.06" target="_blank" aria-label="Instagram"
+             class="text-slate-soft hover:text-pink-400 transition-colors flex items-center gap-2 text-sm font-mono">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            Instagram
+          </a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/hamad-khan06" target="_blank" aria-label="LinkedIn"
+             class="text-slate-soft hover:text-blue-400 transition-colors flex items-center gap-2 text-sm font-mono">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+        </li>
+      </ul>
+    </div>
+    <p class="text-center text-slate-muted font-mono text-xs mt-10">
+      © 2026 Hamad Khan · AI Student & Web Developer<br/>
+    </p>
   </footer>
 
 
-  </div>
-  </body>
+  <!-- ══════════════════ JS ══════════════════ -->
+  <script>
+    // ── Typewriter ──
+    const phrases = [
+      'responsive websites.',
+      'AI-powered tools.',
+      'clean Python backends.',
+      'things that actually work.',
+    ];
+    const el = document.getElementById('typewriter');
+    let pi = 0, ci = 0, deleting = false;
+
+    function type() {
+      const phrase = phrases[pi];
+      if (!deleting) {
+        el.textContent = phrase.slice(0, ++ci);
+        if (ci === phrase.length) { deleting = true; setTimeout(type, 1600); return; }
+      } else {
+        el.textContent = phrase.slice(0, --ci);
+        if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; }
+      }
+      setTimeout(type, deleting ? 45 : 80);
+    }
+    type();
+
+    // ── Mobile nav ──
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const iconOpen   = document.getElementById('icon-open');
+    const iconClose  = document.getElementById('icon-close');
+
+    hamburger.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('open');
+      iconOpen.classList.toggle('hidden', open);
+      iconClose.classList.toggle('hidden', !open);
+    });
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('open');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+    }
+
+    // ── Scroll reveal ──
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ── Counter animation ──
+    function animateCounter(el, target, duration = 1200) {
+      const start = performance.now();
+      const from = parseInt(el.textContent) || 0;
+      function update(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        el.textContent = Math.round(from + (target - from) * progress);
+        if (progress < 1) requestAnimationFrame(update);
+      }
+      requestAnimationFrame(update);
+    }
+
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const target = parseInt(e.target.dataset.target);
+          if (!isNaN(target)) animateCounter(e.target, target);
+          statsObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('[data-target]').forEach(el => statsObserver.observe(el));
+
+    // ── Active nav highlight on scroll ──
+    const sections = document.querySelectorAll('section[id], header[id], footer[id]');
+    const navLinks = document.querySelectorAll('nav a[href^="#"]');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
+      navLinks.forEach(a => {
+        a.classList.toggle('text-white', a.getAttribute('href') === `#${current}`);
+        a.classList.toggle('text-slate-soft', a.getAttribute('href') !== `#${current}`);
+      });
+    }, { passive: true });
+  </script>
+</body>
 </html>
